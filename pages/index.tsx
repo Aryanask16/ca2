@@ -11,11 +11,15 @@ import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 interface WorldProps {
-  globeConfig: any;
-  data: any;
+  globeConfig: GlobeConfig;
+  data: Position[];
 }
 
-const World = dynamic(() => import('../components/ui/globe').then((mod) => mod.World as React.ComponentType<WorldProps>), {
+const WorldComponent = ({ globeConfig, data }: WorldProps) => {
+  // ...
+};
+
+const DynamicWorld = dynamic(() => import('../components/ui/globe').then((mod) => mod.WorldComponent), {
   ssr: false,
 });
 const Desktop: NextPage = () => {
