@@ -9,20 +9,9 @@ import { ContainerScroll } from "../components/ui/container-scroll-animation";
 import { motion } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
-import { World } from '../components/ui/globe';
+
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { GlobeConfig } from '../types/globe-config';
-
-interface WorldProps {
-  globeConfig: GlobeConfig;
-  data: Position[];
-}
-
-const WorldComponent = ({ globeConfig, data }: WorldProps) => {
-  // ...
-};
-
-const DynamicWorld = dynamic(() => import('../components/ui/globe').then((mod) => mod.WorldComponent), {
+const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {
   ssr: false,
 });
 const Desktop: NextPage = () => {
