@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-const World = dynamic(() => import('../components/ui/globe').then((mod) => mod.World as React.FC), {
+const World = dynamic(() => import('../components/ui/globe').then((mod) => mod.World as React.ComponentType<{}>), {
   ssr: false,
 });
 
