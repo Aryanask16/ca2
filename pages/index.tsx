@@ -15,10 +15,9 @@ interface WorldProps {
   data: any;
 }
 
-const World = dynamic<React.ComponentType<WorldProps>>(() => import('../components/ui/globe').then((mod) => mod.World), {
+const World = dynamic(() => import('../components/ui/globe').then((mod) => mod.World as React.ComponentType<WorldProps>), {
   ssr: false,
 });
-
 const Desktop: NextPage = () => {
   const globeConfig = {
     pointSize: 4,
