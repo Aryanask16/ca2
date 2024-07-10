@@ -1,10 +1,10 @@
-
+"use client";
+import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
-
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
@@ -60,10 +60,7 @@ interface WorldProps {
 
 let numbersOfRings = [0];
 
-export function Globe({
-  globeConfig,
-  data,
-}: WorldProps) {
+export function Globe({ globeConfig, data }: WorldProps) {
   const [globeData, setGlobeData] = useState<
     | {
         size: number;
@@ -103,6 +100,7 @@ export function Globe({
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
+
     const globeMaterial = globeRef.current.globeMaterial() as unknown as {
       color: Color;
       emissive: Color;
@@ -136,11 +134,14 @@ export function Globe({
         lng: arc.endLng,
       });
     }
+
+    // remove duplicates for same lat and lng
     const filteredPoints = points.filter(
       (v, i, a) =>
-        a.findIndex(
-          (v2) =>
-            ["lat", "lng"].every((k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"])
+        a.findIndex((v2) =>
+          ["lat", "lng"].every(
+            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
+          )
         ) === i
     );
 
@@ -159,7 +160,6 @@ export function Globe({
         .hexPolygonColor((e) => {
           return defaultProps.polygonColor;
         });
-
       startAnimation();
     }
   }, [globeData]);
@@ -207,7 +207,6 @@ export function Globe({
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return;
-
       numbersOfRings = genRandomNumbers(
         0,
         data.length,
@@ -245,18 +244,12 @@ export function WebGLRendererConfig() {
 
 export function World(props: WorldProps) {
   const { globeConfig } = props;
-
   const scene = new Scene();
-
   scene.fog = new Fog(0xffffff, 400, 2000);
-
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
-      <ambientLight
-        color={globeConfig.ambientLight}
-        intensity={0.6}
-      />
+      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
       <directionalLight
         color={globeConfig.directionalLeftLight}
         position={new Vector3(-400, 100, 400)}
@@ -290,6 +283,7 @@ export function hexToRgb(hex: string) {
   hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   });
+
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
@@ -306,7 +300,6 @@ export function genRandomNumbers(min: number, max: number, count: number) {
     const r = Math.floor(Math.random() * (max - min)) + min;
     if (arr.indexOf(r) === -1) arr.push(r);
   }
+
   return arr;
 }
-
-
