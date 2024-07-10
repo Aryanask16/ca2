@@ -27,6 +27,8 @@ type Position = {
   color: string;
 };
 
+type LoaderComponent<T> = ComponentType<T> | ComponentModule<T> | ((props: T) => Element);
+
 export type GlobeConfig = {
   pointSize?: number;
   globeColor?: string;
