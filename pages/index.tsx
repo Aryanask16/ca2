@@ -11,9 +11,13 @@ import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+
+import { ComponentType } from 'react';
+
 const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
   ssr: false,
-});
+}) as ComponentType<{}>;
+
 const Desktop: NextPage = () => {
   const globeConfig = {
     pointSize: 4,
