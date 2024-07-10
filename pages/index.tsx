@@ -10,12 +10,12 @@ import { motion } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-
-const Desktop: NextPage = () => {
-   const World = dynamic<React.ComponentType<WorldProps>>(
+  const World = dynamic<React.ComponentType<WorldProps, any>>(
   () => import('../components/ui/globe').then((mod) => mod.World),
   { ssr: false }
 );
+
+const Desktop: NextPage = () => {
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
