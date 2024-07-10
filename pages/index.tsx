@@ -10,7 +10,22 @@ import { motion } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-type WorldProps = {};
+type WorldProps = {
+   pointSize: 1,
+    atmosphereColor: "#ffffff",
+    showAtmosphere: true,
+    atmosphereAltitude: 0.1,
+    polygonColor: "rgba(255,255,255,0.7)",
+    globeColor: "#1d072e",
+    emissive: "#000000",
+    emissiveIntensity: 0.1,
+    shininess: 0.9,
+    arcTime: 2000,
+    arcLength: 0.9,
+    rings: 1,
+    maxRings: 3,
+    ...globeConfig,
+};
 
 const World = dynamic<React.ComponentType<WorldProps>>(
   () => import('../components/ui/globe').then((mod) => mod.World),
