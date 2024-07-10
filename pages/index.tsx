@@ -9,6 +9,7 @@ import { ContainerScroll } from "../components/ui/container-scroll-animation";
 import { motion } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
+import World from '../components/ui/globe';
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 interface WorldProps {
   globeConfig: GlobeConfig;
