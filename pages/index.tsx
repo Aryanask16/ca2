@@ -11,6 +11,8 @@ import { LampContainer } from "../components/ui/lamp";
 import dynamic from "next/dynamic";
 import { World } from '../components/ui/globe';
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { GlobeConfig } from '../types/globe-config';
+
 interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
